@@ -1,13 +1,33 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import apiService from './apiService'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blue } from '@material-ui/core/colors'
 
-import Navbar from './Navbar'
-import Login from './components/Login'
-import Logout from './components/Logout'
-import Register from './components/Register'
+import Navbar from './components/Navbar'
+import Login from './components/auth/Login'
+import Logout from './components/auth/Logout'
+import Register from './components/auth/Register'
 import Home from './components/Home'
 import List from './components/List'
+
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: blue[200]
+    },
+    primary: {
+      main: blue[900]
+    }
+  },
+  typography: {
+    useNextVariants: true,
+    fontFamily: [
+      '"Lato"',
+      'sans-serif'
+    ].join(',')
+  }
+});
 
 class App extends React.Component {
   state = { currentUser: apiService.getCurrentUser() }
@@ -24,8 +44,7 @@ class App extends React.Component {
   render() {
     const { currentUser } = this.state
     return (
-      <div className='App container'>
-        <Navbar currentUser={currentUser} />
+      <MuiThemeProvider theme={theme}>
         <Switch>
           <Route
             path="/login"
@@ -53,7 +72,7 @@ class App extends React.Component {
           />
           <Route path="/" component={Home} />
         </Switch>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }
