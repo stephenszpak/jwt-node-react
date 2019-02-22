@@ -1,5 +1,5 @@
 import React from 'react';
-import apiService from '../../apiService'
+import apiService from '../../services/apiService'
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -52,18 +52,22 @@ class Login extends React.Component {
     return (
      <React.Fragment>
        <CssBaseline />
-       <Navbar />
         <div className={classes.root}>
-
-        <Grid container justify="center">
-          <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-            <TextField type="text" placeholder="Email" name="email" value={email} />
-            <TextField type="password" placeholder="Password" name="password" value={password} />
-              <Button color="primary" className={classes.button} type="submit">Log In</Button>
-          </form>
-        </Grid>
+          <Grid container justify="center">
+            <Grid spacing={24} alignItems="center" justify="center" container className={classes.grid}>
+              <Grid item xs={12} md={4}>
+                <Paper className={classes.paper}>
+                  <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                    <TextField type="text" placeholder="Email" className={classes.textField} name="email" value={email} />
+                    <TextField type="password" placeholder="Password" className={classes.textField} name="password" value={password} />
+                    <br></br>
+                      <Button variant="contained" color="primary" className={classes.button} type="submit">Log In</Button>
+                  </form>
+                </Paper>
+              </Grid>
+            </Grid>
+          </Grid>
         </div>
-
      </React.Fragment>
     );
   }
@@ -72,6 +76,7 @@ class Login extends React.Component {
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    flexWrap: 'wrap',
     backgroundColor: theme.palette.grey['100'],
     overflow: 'hidden',
     backgroundSize: 'cover',
@@ -86,8 +91,8 @@ const styles = theme => ({
     }
   },
   paper: {
+    display: 'flex',
     padding: theme.spacing.unit * 3,
-    textAlign: 'left',
     color: theme.palette.text.secondary,
   },
   topBar: {
@@ -99,10 +104,13 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+    paddingBottom: 15,
+    width: 300
   },
   button: {
     margin: theme.spacing.unit,
-  },
+    width: 300
+  }
 })
 
 export default withRouter(withStyles(styles)(Login));

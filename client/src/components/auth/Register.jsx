@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import apiService from '../../apiService';
+import apiService from '../../services/apiService';
 
 class Register extends Component {
   state = {

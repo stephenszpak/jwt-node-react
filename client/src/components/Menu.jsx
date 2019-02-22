@@ -13,11 +13,6 @@ const Menu = [
     pathname: "/dashboard",
     icon: LocalShippingIcon
   },
-  {
-    label: "Login",
-    pathname: "/login",
-    icon: PublishIcon
-  }
 ];
 
 export default Menu;
