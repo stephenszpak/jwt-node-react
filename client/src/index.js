@@ -1,35 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
-import './styles.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createBrowserHistory } from 'history';
+import { Router, Route, Switch } from 'react-router-dom';
 
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors'
-import App from './/App'
+import './assets/css/index.css';
 
-const theme = createMuiTheme({
-  palette: {
-    secondary: {
-      main: blue[200]
-    },
-    primary: {
-      main: blue[900]
-    }
-  },
-  typography: {
-    useNextVariants: true,
-    fontFamily: [
-      '"Lato"',
-      'sans-serif'
-    ].join(',')
-  }
-});
+import indexRoutes from './routes/index.jsx';
+
+const hist = createBrowserHistory();
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
-  <Router>
-    <App />
-  </Router>
-  </MuiThemeProvider>,
-  document.getElementById('root')
-)
+  <Router history={hist}>
+    <Switch>
+      {indexRoutes.map((prop, key) => {
+        return <Route path={prop.path} component={prop.component} key={key} />;
+      })}
+    </Switch>
+  </Router>,
+  document.getElementById("root")
+);

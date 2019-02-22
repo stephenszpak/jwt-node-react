@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { withTheme } from '@material-ui/core/styles';
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -60,7 +61,7 @@ const renderActiveShape = (props) => {
 };
 
 
-export default class IqPieChart extends PureComponent {
+class IqPieChart extends PureComponent {
   state = {
     activeIndex: 0,
   };
@@ -72,19 +73,18 @@ export default class IqPieChart extends PureComponent {
   };
 
   render() {
+    const { theme } = this.props;
     return (
-      <ResponsiveContainer width="99%" height={225}>
+      <ResponsiveContainer width="99%" height={275}>
 
       <PieChart>
         <Pie
           activeIndex={this.state.activeIndex}
           activeShape={renderActiveShape}
           data={data}
-          cx={200}
-          cy={200}
           innerRadius={60}
           outerRadius={80}
-          fill="#8884d8"
+          fill={theme.palette.primary.main}
           dataKey="Units"
           onMouseEnter={this.onPieEnter}
         />
@@ -93,3 +93,5 @@ export default class IqPieChart extends PureComponent {
     );
   }
 }
+
+export default withTheme()(IqPieChart);

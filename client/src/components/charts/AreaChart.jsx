@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { withTheme } from '@material-ui/core/styles';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
@@ -15,9 +16,10 @@ const data = [
   }
 ];
 
-export default class IqAreaChart extends PureComponent {
+class IqAreaChart extends PureComponent {
 
   render() {
+    const { theme } = this.props;
     return (
       <ResponsiveContainer width="99%" height={225}>
       <AreaChart
@@ -32,9 +34,11 @@ export default class IqAreaChart extends PureComponent {
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Area type="monotone" dataKey="Units" stroke="#8884d8" fill="#8884d8" />
+          <Area type="monotone" dataKey="Units" stroke={theme.palette.primary.secondary} fill={theme.palette.primary.main} />
       </AreaChart>
       </ResponsiveContainer>
     );
   }
 }
+export default withTheme()(IqAreaChart);
+

@@ -7,13 +7,13 @@ import {
 
 const data = [
   {
-    name: 'On Hand', Units: 24124, pv: 2400, Net: 2400,
+    name: 'On Hand', Units: 24124, pv: 2400, Cost: 242524,
   },
   {
-    name: 'On Order', Units: 14124, pv: 1398, Net: 2210,
+    name: 'On Order', Units: 14124, pv: 1398, Cost: 2556,
   },
   {
-    name: 'Overstock', Units: 2000, pv: 9800, Net: 2290,
+    name: 'Overstock', Units: 2000, pv: 9800, Cost: 252562,
   }
 ];
 
@@ -38,7 +38,7 @@ class IqBarChart extends PureComponent {
         <Tooltip />
         <Legend />
           <Bar dataKey="Units" stackId="a" fill={theme.palette.primary.main} />
-          <Bar dataKey="Net" stackId="a" fill={theme.palette.primary.secondary} />
+          {/* <Bar dataKey="Cost" stackId="a" fill={theme.palette.primary.secondary} /> */}
         {/* <Bar dataKey="Units" fill="#ffc658" /> */}
       </BarChart>
     </ResponsiveContainer>
